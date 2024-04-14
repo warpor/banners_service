@@ -143,7 +143,7 @@ async def get_banners(db: AsyncSession, feature_id: int | None = None,
         query = query.where(feature_id == Banner.feature_id)
 
     if tag_id is not None:
-        query = query.where(Banner.banner_tag.any(BannerTag.tag_id == tag_id))  # TODO: check
+        query = query.where(Banner.banner_tag.any(BannerTag.tag_id == tag_id))
 
     query = query.offset(offset).limit(limit)
     return (await db.execute(query)).scalars().fetchall()
